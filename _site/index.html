@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GraphEval36K: Evaluating Coding and Reasoning Capabilities of Large Language Models on Graph Datasets</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true, 
+        tags: 'all',
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script
+    type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">GraphEval36K: Evaluating Coding and Reasoning Capabilities of Large Language Models on Graph Datasets</h1>
+          
+
+          
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              
+              <!-- Video Link. -->
+              
+              <!-- Code Link. -->
+              
+              <!-- Dataset Link. -->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+<div class="container is-max-desktop">
+
+<div class="content">
+  <h2 id="abstract">Abstract</h2>
+<p>Large language models (LLMs) have achieved remarkable success in natural language processing (NLP), demonstrating significant capabilities in processing and understanding text data. However, recent studies have identified limitations in LLMs’ ability to reason about graph-structured data. To address this gap, we introduce GraphEval36k, the <strong>first</strong> comprehensive graph dataset, comprising 40 graph data structure problems along with 36,900 test cases. Additionally, we introduce an evaluation framework based on GraphEval36k, designed to assess the graph reasoning abilities of LLMs through coding challenges. Our dataset categorizes test cases into four primary and four sub-categories, ensuring a comprehensive evaluation. We evaluate eight popular LLMs on GraphEval36k, revealing that LLMs exhibit a better understanding of directed graphs compared to undirected ones. While private LLMs consistently outperform open-source models, the performance gap is narrowing. Furthermore, to improve the usability of our evaluation framework, we propose Structured Symbolic Decomposition (SSD), an instruction-based method designed to enhance LLM performance on GraphEval36k. Results show that SSD improves the performance of GPT-3.5, GPT-4, and GPT-4o on complex graph problems, with the increase of 11.11%, 33.37%, and 33.37%, respectively.</p>
+
+<!-- ## Key Contributions
+Clearly highlight **what makes your research innovative** and **why it matters**.  -->
+
+<h2 id="methodology">Methodology</h2>
+<h4 id="pipeline">Pipeline</h4>
+<div style="text-align: left;">
+    <img src="static/image/pipeline.png" alt="Pipeline" width="600" height="300" />
+
+    <p><em>Figure 1: Overview of the Evaluation Framework. For each problem, we input problem statement, data examples, and code framework to LLMs. And then they complete the code and give explanations. Finally, the framework evaluates the code on GraphEval36k and returns the result details.</em></p>
+</div>
+<p><br /></p>
+<div style="text-align: left;">
+    <img src="static/image/data_collection.png" alt="Data Collection" width="600" height="300" />
+
+    <p><em>Figure 2: The overview pipeline of GraphEval36k dataset construction.</em></p>
+</div>
+<p><br /></p>
+
+<h4 id="structured-symbolic-decomposition">Structured Symbolic Decomposition</h4>
+<p>To enhance the usability of our evaluation framework and GraphEval36k, we introduce Structured Symbolic Decomposition (SSD), an instruction-based method utilizing test cases from GraphEval36k for graph problems. Our approach aims to enable LLMs to perform better graph reasoning, especially, for hard-level problems.</p>
+
+<h5 id="instructions-for-llm">Instructions for LLM</h5>
+
+<p>The instructions are composed of four parts: <em>problem clarification</em>, <em>problem breakdown</em>, <em>solution formulation</em>, and <em>program implementation</em>.</p>
+
+<ul>
+  <li><strong>Problem Clarification:</strong>
+    <ol>
+      <li>Cognitive Step: <em>You must first understand and clearly articulate the problem, including all inputs and desired outputs.</em></li>
+      <li>Action Step: <em>Identify and list any specific rules, constraints, or conditions that influence the solution. Use the test case examples to assist the understanding.</em></li>
+    </ol>
+  </li>
+  <li><strong>Problem Breakdown:</strong>
+    <ol>
+      <li>Cognitive Step: <em>Decompose the problem into smaller, manageable sub-problems, translating it into a symbolic form and identifying the key components and relationships within the problem.</em></li>
+      <li>Action Step: <em>Outline the sequential steps required to solve the overall problem.</em></li>
+    </ol>
+  </li>
+  <li><strong>Solution Formulation:</strong>
+    <ol>
+      <li>Cognitive Step: <em>Formulate solving strategies using the symbolic form developed in the previous step and define the algorithms and methods needed to address each sub-problem.</em></li>
+      <li>Action Step: <em>Detail the algorithms and approaches for each sub-problem, ensuring they are logically connected and comprehensive.</em></li>
+    </ol>
+  </li>
+  <li><strong>Program Implementation:</strong>
+    <ol>
+      <li>Cognitive Step: <em>Conceptualize the implementation of each solution component.</em></li>
+      <li>Action Step: <em>Write a program for each breakdown part, ensuring it aligns with the formulated strategy. Run test cases to verify the correctness of each component.</em></li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="visual-results">Visual Results</h2>
+<div style="text-align: left;">
+    <img src="static/image/results.png" alt="Online Leetcode Test" width="600" height="300" />
+
+    <p><em>FEvaluation Results on GraphEval36K. This table presents the passing rates (%) of LLMs across various graph categories. The first row lists the names of the evaluated LLMs, while the first column categorizes the graphs as follows: "SG" denotes sparse graphs, "PG" denotes planar graphs, "RG" denotes regular graphs, "DG" denotes dense graphs and "CG" denotes complete graphs. Additionally, the following abbreviations are used to describe graph characteristics: "c" for connected graphs, "dc" for disconnected graphs, "cy" for cyclic graphs, and "acy" for acyclic graphs. This classification corresponds to Figure 3. The passing rates (%) are represented as "directed | undirected" for each graph category, where the number preceding the bar indicates the result for directed graphs, and the number following the bar indicates the result for undirected graphs. "NA" signifies that the category is not applicable. We bold the largest number in each row.</em></p>
+</div>
+<p><br /></p>
+<div style="text-align: left;">
+    <img src="static/image/ssd_results.png" alt="SSD Results" width="600" height="300" />
+
+    <p><em>Figure 4: Passing rate comparison across eight LLMs, focusing on GPT-3.5, GPT-4, and GPT-4o to highlight the performance gains from using SSD</em></p>
+</div>
+
+<!-- ## Contact Information
+- [Qiming Wu](mailto:qimingwu@cs.ucsb.edu)
+- [Zichen Chen](mailto:zichen_chen@ucsb.edu)
+- [Will Corcoran](mailto:wcorcoran@ucsb.edu)
+- [Misha Sra](mailto:sra@ucsb.edu)
+- [Ambuj K. Singh](mailto:ambuj@cs.ucsb.edu)
+
+
+## Citation
+Please cite this paper as follows:
+
+```bibtex
+@article{wu2024grapheval36k,
+  author    = {Qiming Wu and Zichen Chen and Will Corcoran and Misha Sra and Ambuj K. Singh},
+  title     = {GraphEval36K: Evaluating Coding and Reasoning Capabilities of Large Language Models on Graph Datasets},
+  year      = {2024},
+}
+``` -->
+
+</div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is powered by <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> and <a href="https://github.com/chen-zichen/academic_page_builder.git">AcademicPageBuilder</a>. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
